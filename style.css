@@ -45,6 +45,31 @@ body {
     margin-right: 10px;
 }
 
+.card-body-hc{
+    background-color: var(--secondary);
+    color: var(--primary);
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-body-manager{
+    background-color: var(--secondary);
+    color: var(--primary);
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-body-player{
+    background-color: var(--secondary);
+    color: var(--primary);
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
 .container {
     margin: 85px auto;
     justify-content: space-evenly;
