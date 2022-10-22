@@ -3,16 +3,15 @@ const generateHTML = require('./src/generateHTML');
 
 //profiles
 const Coach = require('./lib/Coach');
-const Engineer = require('./lib/Manager');
+const Manager = require('./lib/Manager');
 const Player = require('./lib/Player'); 
 
 //node modules
 const fs = require('fs');
 const inquirer = require('inquirer');
-const path = require('path');
 
 //team array 
-const teamArray = []
+const teamArray = [];
 
 //begin coach prompt 
 const addCoach = () => {
@@ -33,13 +32,13 @@ const addCoach = () => {
         {
             type: 'input',
             name: 'position',
-            message: "Coach is the ____ coach.",
+            message: "Coach is the ____ coach!",
             validate: nameInput => {
-                if  (isNaN(nameInput)) {
-                    console.log ("Please enter coach's position!")
-                    return false; 
-                } else {
-                    return true;
+                if  (nameInput) {    
+                    return true; 
+                } else 
+                { console.log ("Please enter coach's position!")
+                    return false;
                 }
             }
         },
@@ -57,23 +56,11 @@ const addCoach = () => {
                 }
             }
         },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: "Where is Coach's office located?",
-            validate: nameInput => {
-                if  (isNaN(nameInput)) {
-                    console.log ('Please enter his office location!')
-                    return false; 
-                } else {
-                    return true;
-                }
-            }
-        }
+        
     ])
     .then(coachInput => {
-        const  { name, id, email, officeNumber } = coachInput; 
-        const coach = new Coach (name, id, email, officeNumber);
+        const  { name, position, email } = coachInput; 
+        const coach = new Coach (name, position, email );
 
         teamArray.push(coach); 
         console.log(coach); 
@@ -106,11 +93,12 @@ const addManager = () => {
             name: 'position',
             message: "He is the ____ Manager of UC Riverside.",
             validate: nameInput => {
-                if  (isNaN(nameInput)) {
-                    console.log ("Please enter the manager's position!")
-                    return false; 
+                if  (nameInput) {
+                    return true; 
                 } else {
-                    return true;
+                    console.log ("Please enter the manager's position!")
+                    
+                    return false;
                 }
             }
         },
@@ -133,18 +121,104 @@ const addManager = () => {
             name: 'year',
             message: "Where year is the Head Manager?",
             validate: nameInput => {
-                if  (isNaN(nameInput)) {
-                    console.log ('Please enter his academic year!')
-                    return false; 
+                if  (nameInput) {
+                    return true; 
                 } else {
-                    return true;
+                    console.log ('Please enter his academic year!')
+                    return false;
                 }
             }
         }
     ])
     .then(managerInput => {
-        const  { name, id, email, year } = managerInput; 
-        const manager = new Manager (name, id, email, year);
+        const  { name, position, email, year } = managerInput; 
+        const manager = new Manager (name, position, email, year);
+
+        teamArray.push(manager); 
+        console.log(manager); 
+    })
+};
+
+const addPlayer = () => {
+    console.log(`
+    =================
+    Adding player to the team
+    =================
+    `);
+
+    return inquirer.prompt ([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Who wears #5 at UC Riverisde?', 
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("Please enter his name!");
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'position',
+            message: "He is the starting ____ Guard for UC Riverside.",
+            validate: nameInput => {
+                if  (nameInput) {
+                    return true; 
+                } else {
+                    console.log ("Please enter the Zyon's position!")
+                    
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'height',
+            message: "Please enter Zyon's height.",
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ('Please enter a height!')
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'weight',
+            message: "How much does Pullin weigh?",
+            validate: nameInput => {
+                if  (nameInput) {
+                    return true; 
+                } else {
+                    console.log ('Please enter his academic year!')
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'hometown',
+            message: "Zyon is from ________ Hill, CA",
+            validate: nameInput => {
+                if  (nameInput) {
+                    return true; 
+                } else {
+                    console.log ('He is from the ___ Area!')
+                    return false;
+                }
+            }
+        },
+
+    ])
+    .then(managerInput => {
+        const  { name, position, email, year } = managerInput; 
+        const manager = new Manager (name, position, email, year);
 
         teamArray.push(manager); 
         console.log(manager); 
@@ -154,7 +228,7 @@ const addManager = () => {
 
 // function to generate HTML page file using file system 
 const writeFile = data => {
-    fs.writeFile('./index.html', data, err => {
+    fs.writeFile('./dist/index.html', data, err => {
         // if there is an error 
         if (err) {
             console.log(err);
@@ -167,6 +241,18 @@ const writeFile = data => {
 }; 
 
 addCoach()
+  .then(addManager)
+  .then(teamArray => {
+    return generateHTML(teamArray);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .catch(err => {
+ console.log(err);
+  });
+
+  addCoach()
   .then(addPlayer)
   .then(teamArray => {
     return generateHTML(teamArray);

@@ -71,9 +71,7 @@ generateHTML = (data) => {
 
             pageArray.push(coachCard);
         }
-    }
-
-    //call Manager function
+        //call Manager function
     if (role === 'Manager') {
         const managerCard = generateManager(staff);
 
@@ -86,18 +84,19 @@ generateHTML = (data) => {
         pageArray.push(playerCard)
     }
 }
-
-//joining strings 
+    //joining strings 
 const staffCards = pageArray.join ('')
 
 //go back to generated page 
-const generateTeamage = function (staffCards) {
+const generateTeam = generateTeamPage(staffCards) 
     return generateTeam;
-}
+} 
+
 
 //create HTML page
 const generateTeamPage = function (staffCards) {   
     return`
+}
     <!DOCTYPE html>
     <html lang="en">
     <head>

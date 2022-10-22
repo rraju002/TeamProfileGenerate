@@ -1,0 +1,30 @@
+{
+  "name": "teamprofilegenerate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node --experimental-modules src/generateHTML.js "
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rraju002/TeamProfileGenerate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rraju002/TeamProfileGenerate/issues"
+  },
+  "homepage": "https://github.com/rraju002/TeamProfileGenerate#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4",
+    "jest": "^29.2.1"
+  }
+}
