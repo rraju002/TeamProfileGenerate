@@ -166,8 +166,8 @@ const writeFile = data => {
     })
 }; 
 
-addManager()
-  .then(addEmployee)
+addCoach()
+  .then(addPlayer)
   .then(teamArray => {
     return generateHTML(teamArray);
   })
