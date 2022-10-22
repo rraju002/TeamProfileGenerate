@@ -184,7 +184,7 @@ const addPlayer = () => {
                     return true;
                 } else {
                     console.log ('Please enter a height!')
-                    return false; 
+                    return true; 
                 }
             }
         },
@@ -216,12 +216,12 @@ const addPlayer = () => {
         },
 
     ])
-    .then(managerInput => {
-        const  { name, position, email, year } = managerInput; 
-        const manager = new Manager (name, position, email, year);
+    .then(playerInput => {
+        const  { name, position, height, weight, hometown } = playerInput; 
+        const player = new Player (name, position, height, weight, hometown);
 
-        teamArray.push(manager); 
-        console.log(manager); 
+        teamArray.push(player); 
+        console.log(player); 
     })
 };
 
@@ -252,7 +252,7 @@ addCoach()
  console.log(err);
   });
 
-  addCoach()
+  addManager()
   .then(addPlayer)
   .then(teamArray => {
     return generateHTML(teamArray);
