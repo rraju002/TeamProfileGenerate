@@ -178,9 +178,8 @@ const addPlayer = () => {
             type: 'input',
             name: 'height',
             message: "Please enter Zyon's height.",
-            validate: email => {
-                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                if (valid) {
+            validate: nameInput => {
+                if  (nameInput) {
                     return true;
                 } else {
                     console.log ('Please enter a height!')
@@ -242,17 +241,6 @@ const writeFile = data => {
 
 addCoach()
   .then(addManager)
-  .then(teamArray => {
-    return generateHTML(teamArray);
-  })
-  .then(pageHTML => {
-    return writeFile(pageHTML);
-  })
-  .catch(err => {
- console.log(err);
-  });
-
-  addManager()
   .then(addPlayer)
   .then(teamArray => {
     return generateHTML(teamArray);
