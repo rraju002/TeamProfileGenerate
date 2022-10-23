@@ -61,7 +61,7 @@ const generatePlayer = function (Player) {
 generateHTML = (data) => {
     //array for cards
     pageArray = [];
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data; i++) {
         const staff = data[i];
         const role = staff.getRole();
         

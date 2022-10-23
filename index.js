@@ -15,6 +15,11 @@ const teamArray = [];
 
 //begin coach prompt 
 const addCoach = () => {
+    console.log(`
+    =================
+    Adding Coach to the team
+    =================
+    `);
     return inquirer.prompt ([
         {
             type: 'input',
@@ -119,7 +124,7 @@ const addManager = () => {
         {
             type: 'input',
             name: 'year',
-            message: "Where year is the Head Manager?",
+            message: "What year is the Head Manager?",
             validate: nameInput => {
                 if  (nameInput) {
                     return true; 
