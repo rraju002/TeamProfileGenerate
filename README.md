@@ -22,7 +22,7 @@
   Fork repo and add your changes, then make a pull request! <br/>
   
   ## Test
-   ![] (https://github.com/rraju002/TeamProfileGenerate/tree/main/GIF.gif)
+   ![] ([https://github.com/rraju002/TeamProfileGenerate/tree/main/GIF.gif](https://github.com/rraju002/TeamProfileGenerate/blob/main/GIF.gif/TeamGenerator.gif))
   
   ## Questions? 
   Reach me at the following with your questions: <br/>
